@@ -1,0 +1,11 @@
+variable "location" {
+  type        = string
+  default     = "West Europe" # Aligns with EU data residency rules
+  description = "The Azure region for GDPR-compliant data storage."
+}
+
+variable "environment" {
+  type        = string
+  default     = "Production"
+  description = "Environment tag for compliance tracking."
+}

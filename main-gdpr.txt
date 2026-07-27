@@ -1,0 +1,49 @@
+resource "azurerm_resource_group" "gdpr_sec_rg" {
+  name     = "rg-gdpr-security-hardening-prod"
+  location = var.location
+  tags = {
+    Environment = var.environment
+    Compliance  = "GDPR"
+  }
+}
+
+resource "azurerm_log_analytics_workspace" "gdpr_audit_logs" {
+  name                = "law-gdpr-audit-trail"
+  location            = azurerm_resource_group.gdpr_sec_rg.location
+  resource_group_name = azurerm_resource_group.gdpr_sec_rg.name
+  sku                 = "PerGB2018"
+  retention_in_days   = 365
+}
+
+resource "azurerm_key_vault" "gdpr_vault" {
+  name                        = "kv-gdpr-secure-store"
+  location                    = azurerm_resource_group.gdpr_sec_rg.location
+  resource_group_name         = azurerm_resource_group.gdpr_sec_rg.name
+  enabled_for_disk_encryption = true
+  tenant_id                   = data.azurerm_client_config.current.tenant_id
+  sku_name                    = "premium"
+  soft_delete_retention_days  = 90
+  purge_protection_enabled    = true
+
+  network_acls {
+    default_action = "Deny"
+    bypass         = "AzureServices"
+  }
+}
+
+resource "azurerm_storage_account" "gdpr_secure_storage" {
+  name                     = "stgdprsecuredta"
+  resource_group_name      = azurerm_resource_group.gdpr_sec_rg.name
+  location                 = azurerm_resource_group.gdpr_sec_rg.location
+  account_tier             = "Standard"
+  account_replication_type = "GRS"
+
+  min_tls_version              = "TLS1_2"
+  allow_nested_items_to_public = false
+
+  blob_properties {
+    delete_retention_policy {
+      days = 30
+    }
+  }
+}
