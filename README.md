@@ -1,3 +1,5 @@
+same for 
+
 # M365 DevSecOps Hardening - GDPR Compliance
 
 ![GitHub Status](https://img.shields.io/badge/status-active-success.svg)
@@ -7,7 +9,7 @@
 
 ## 📌 About the Project
 
-This repository contains DevSecOps scripts and automated tenant hardening configurations for **Microsoft 365** environments. 
+This repository contains DevSecOps scripts and automated tenant hardening configurations for **Microsoft 365** environments. 
 
 The primary goal is to align your cloud infrastructure's security and data governance posture with the requirements of the **GDPR (General Data Protection Regulation)** standards, ensuring privacy by design, data protection, security accountability, and proper lifecycle management within cloud services.
 
@@ -39,6 +41,6 @@ Before applying these configurations, ensure you have the following in place:
 ## ⚙️ Usage / Deployment
 
 1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/quentin-falquerho/m365-devsecops-hardening-GDPR.git](https://github.com/quentin-falquerho/m365-devsecops-hardening-GDPR.git)
-   cd m365-devsecops-hardening-GDPR
+   ```bash
+   git clone [https://github.com/quentin-falquerho/m365-devsecops-hardening-GDPR.git](https://github.com/quentin-falquerho/m365-devsecops-hardening-GDPR.git)
+   cd m365-devsecops-hardening-GDPR
